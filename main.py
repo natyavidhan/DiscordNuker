@@ -15,7 +15,7 @@ with open("token.json", "r") as f:
 
 @client.command()
 async def channels_create(ctx, amt,*, name):
-    for i in range(int(amt)):
+    for _ in range(int(amt)):
         await ctx.guild.create_text_channel(name)
     msg_id = ctx.message
     await msg_id.add_reaction('✅')
@@ -40,7 +40,7 @@ async def nickto(ctx, name):
 @client.command()
 async def dm(ctx, times, *,text):
     for user in client.get_all_members():
-        for i in range(int(times)):
+        for _ in range(int(times)):
             try:
                 await user.send(text)
             except:
@@ -81,12 +81,12 @@ async def webhook(ctx, *,name):
 @client.command()
 async def massping(ctx, amt, *,msg):
     for webhook in await ctx.guild.webhooks():
-        for i in range(int(amt)):
+        for _ in range(int(amt)):
             try:
             # ctx.send(webhook.url)
                 DiscordWebhook(url = webhook.url, content = f"||@everyone|| {msg}").execute()
             except:
-                pass            
+                pass
     msg_id = ctx.message
     await msg_id.add_reaction('✅')
 
